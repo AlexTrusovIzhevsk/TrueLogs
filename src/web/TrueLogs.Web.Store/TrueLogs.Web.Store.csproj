@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fluxor" Version="6.9.0" />
+        <PackageReference Include="Fluxor.Blazor.Web" Version="6.9.0" />
+        <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="6.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\contract\TrueLogs.Contract.Web\TrueLogs.Contract.Web.csproj" />
+      <ProjectReference Include="..\..\lang\rewriter\TrueLogs.TrueLang.Rewriters\TrueLogs.TrueLang.Rewriters.csproj" />
+      <ProjectReference Include="..\..\lang\translator\TrueLogs.TrueLang.Translator.TrueLang\TrueLogs.TrueLang.Translator.TrueLang.csproj" />
+      <ProjectReference Include="..\..\lang\TrueLogs.TrueLang\TrueLogs.TrueLang.csproj" />
+    </ItemGroup>
+
+</Project>

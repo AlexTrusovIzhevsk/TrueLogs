@@ -1,0 +1,83 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorLayout
+@using MudBlazor
+@using MudBlazor.Utilities
+
+<MudThemeProvider 
+    Theme="_theme"
+    @bind-IsDarkMode="_isDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudPopoverProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense=true>
+        <MudText Typo="Typo.h6" Class="ml-2">TrueLogs</MudText>
+        <MudSpacer />
+        <MudToggleIconButton 
+            @bind-Toggled="_isDarkMode"
+            Icon="@Icons.Material.Filled.LightMode"
+            Color="@Color.Primary"
+            ToggledIcon="@Icons.Material.Filled.DarkMode"
+            ToggledColor="@Color.Secondary" />
+    </MudAppBar>
+
+    <MudMainContent>
+        <MudContainer 
+            MaxWidth="MaxWidth.False"
+            Class="ma-0 pa-0">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+
+    private bool _isDarkMode = false;
+
+    private void ChangeTheme() 
+        => _isDarkMode = !_isDarkMode;
+
+    private static MudTheme _theme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            AppbarBackground = AppbarColor,
+
+            Primary = PrimaryColor,
+            Secondary = SecondaryColor,
+            Tertiary = SecondaryColor,
+        },
+
+        PaletteDark = new PaletteDark()
+        {
+            AppbarBackground = AppbarColor,
+
+            Primary = PrimaryColor,
+            Secondary = SecondaryColor,
+            Tertiary = SecondaryColor,
+
+            Background = BackgroundDarkColor,
+            DrawerBackground = BackgroundDarkColor,
+            Surface = BackgroundDarkColor,
+
+            // Surface = "#1A3A48",  //Карточки будут чуть светлее фона
+            // DrawerBackground = "#0D2330", //Меню можно сделать чуть темнее фона
+
+            // Текст (обеспечиваем контраст)
+            TextPrimary = "rgba(255,255,255, 0.90)",
+            TextSecondary = "rgba(255,255,255, 0.60)",
+            TextDisabled = "rgba(255,255,255, 0.40)",
+
+            // Элементы интерфейса
+            Divider = "rgba(255,255,255, 0.12)",
+            TableLines = "rgba(255,255,255, 0.12)",
+            LinesInputs = "rgba(255,255,255, 0.3)",
+        },
+    };
+
+    private const string AppbarColor = "#002433";
+    private const string PrimaryColor = "#CF521D";
+    private const string SecondaryColor = "#1D9ACF";
+
+    private const string BackgroundDarkColor = "#102C3A";
+}

@@ -1,0 +1,7 @@
+﻿/*.tl-logs-grid ::deep .mud-table-cell {
+    padding: 0px;
+}*/
+
+.tl-logs-grid-hierarchy {
+    text-align: center
+}

@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Authors>TrueSoft</Authors>
+    <Company>TrueSoft</Company>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>
