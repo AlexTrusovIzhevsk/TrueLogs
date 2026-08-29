@@ -45,6 +45,8 @@
   <Folder Name="/src/lang/translator/">
     <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.LiteDB.Tests/TrueLogs.TrueLang.Translator.LiteDB.Tests.csproj" Id="2e3d10bc-fb90-496d-9547-cd3434aa05a4" />
     <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.LiteDB/TrueLogs.TrueLang.Translator.LiteDB.csproj" Id="df7475ec-7fee-403b-b9db-f49ec0b608f1" />
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.PostgreSQL.Tests/TrueLogs.TrueLang.Translator.PostgreSQL.Tests.csproj" Id="6d74f739-389b-47d6-bbbc-77eaf2df4427" />
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.PostgreSQL/TrueLogs.TrueLang.Translator.PostgreSQL.csproj" Id="29e17a4b-b1cc-4bcb-9417-2da7f6253981" />
     <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.TrueLang.Tests/TrueLogs.TrueLang.Translator.TrueLang.Tests.csproj" Id="2be7a579-def6-4010-bb36-3f4e4583a959" />
     <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.TrueLang/TrueLogs.TrueLang.Translator.TrueLang.csproj" Id="5aa00d03-876c-4fab-81b5-eacbf9452b06" />
   </Folder>
