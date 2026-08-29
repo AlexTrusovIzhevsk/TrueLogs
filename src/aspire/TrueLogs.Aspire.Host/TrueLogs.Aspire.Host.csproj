@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>9d050766-103c-4129-b290-b1af7f43ace3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\api\TrueLogs.Api.Emitter.Host\TrueLogs.Api.Emitter.Host.csproj" />
+    <ProjectReference Include="..\..\api\TrueLogs.Api.Provider.Host\TrueLogs.Api.Provider.Host.csproj" />
+    <ProjectReference Include="..\..\web\TrueLogs.Web.Host\TrueLogs.Web.Host.csproj" />
+  </ItemGroup>
+
+</Project>

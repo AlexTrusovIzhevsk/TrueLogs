@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Fluxor" Version="6.9.0" />
+      <PackageReference Include="Fluxor.Blazor.Web" Version="6.9.0" />
+      <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="6.9.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.26" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.26" PrivateAssets="all" />
+      <PackageReference Include="MudBlazor" Version="9.4.0" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\contract\TrueLogs.Contract.Web\TrueLogs.Contract.Web.csproj" />
+        <ProjectReference Include="..\TrueLogs.Web.Client\TrueLogs.Web.Client.csproj" />
+        <ProjectReference Include="..\TrueLogs.Web.Store\TrueLogs.Web.Store.csproj" />
+        <ProjectReference Include="..\..\client\TrueLogs.Client\TrueLogs.Web.Client.csproj" />
+        <ProjectReference Include="..\..\contract\TrueLogs.Contract\TrueLogs.Contract.Web.csproj" />
+    </ItemGroup>
+
+</Project>

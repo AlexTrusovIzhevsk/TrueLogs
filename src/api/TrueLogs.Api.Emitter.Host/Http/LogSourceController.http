@@ -1,0 +1,19 @@
+@HostAddress = http://localhost:5195
+
+POST  {{HostAddress}}/log-client/
+Accept: application/json
+
+[
+  {
+    "message": "Test log message",
+    "sourceDateTime": "2026-04-25T10:30:00Z",
+    "sourceName": "TestSource1"
+  }
+]
+
+###
+
+GET  {{HostAddress}}/log-provider/all
+Accept: application/json
+
+###

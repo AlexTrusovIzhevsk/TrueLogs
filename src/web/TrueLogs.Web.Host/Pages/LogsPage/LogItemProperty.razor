@@ -1,0 +1,29 @@
+﻿@using Fluxor
+@using TrueLogs.Web.Store.LogsFeature.Actions
+
+<tr class="mud-table-row" style="background-color: @(Color.Surface)">
+    <td class="mud-table-cell mud-table-child-content" />
+    <td class="mud-table-cell mud-table-child-content" />
+    <td class="mud-table-cell mud-table-child-content" >
+        <MudStack Row="true">
+            <LogItemPropertyFilterSelector Key="@Key" Value="@Value" Properties="@Properties" />
+            @Key
+        </MudStack>
+    </td>
+    <td class="mud-table-cell mud-table-child-content">
+        @Value
+    </td>
+</tr>
+
+
+@code {
+
+    [Parameter]
+    public string Key { get; set; } = null!;
+
+    [Parameter]
+    public string Value { get; set; } = null!;
+
+    [Parameter]
+    public IEnumerable<Property> Properties { get; set; } = [];
+}

@@ -1,0 +1,60 @@
+<Solution>
+  <Folder Name="/data/" />
+  <Folder Name="/data/logs/" />
+  <Folder Name="/data/logs/emitter/">
+    <File Path="data/logs/emitter/emitter.row.log" />
+    <File Path="data/logs/emitter/emitter.structured.log" />
+  </Folder>
+  <Folder Name="/data/logs/provider/">
+    <File Path="data/logs/provider/provider.row.log" />
+    <File Path="data/logs/provider/provider.structured.log" />
+  </Folder>
+  <Folder Name="/etc/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/api/">
+    <Project Path="src/api/TrueLogs.Api.Emitter.Host/TrueLogs.Api.Emitter.Host.csproj" />
+    <Project Path="src/api/TrueLogs.Api.Provider.Host/TrueLogs.Api.Provider.Host.csproj" />
+  </Folder>
+  <Folder Name="/src/aspire/">
+    <Project Path="src/aspire/TrueLogs.Aspire.Host/TrueLogs.Aspire.Host.csproj" />
+    <Project Path="src/aspire/TrueLogs.ServiceDefaults/TrueLogs.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/contract/">
+    <Project Path="src/contract/TrueLogs.Contract.Emitter/TrueLogs.Contract.Emitter.csproj" Id="5864ed89-8a30-4646-a170-002f5751d954" />
+    <Project Path="src/contract/TrueLogs.Contract.Web/TrueLogs.Contract.Web.csproj" Id="3fb4f5ac-5edc-4489-98f3-492f0d8bbfa3" />
+  </Folder>
+  <Folder Name="/src/emitter/">
+    <Project Path="src/emitter/TrueLogs.Emitter.Client/TrueLogs.Emitter.Client.csproj" Id="5e55e46a-3c06-45f1-86a8-9885746d6238" />
+  </Folder>
+  <Folder Name="/src/emitter/adapter/">
+    <Project Path="src/emitter/adapter/TrueLogs.Emitter.Adapter.File/TrueLogs.Emitter.Adapter.File.csproj" Id="07ead3b0-66c9-4254-bfef-d74ecc7bc689" />
+  </Folder>
+  <Folder Name="/src/lang/">
+    <Project Path="src/lang/TrueLogs.TrueLang.Tests/TrueLogs.TrueLang.Tests.csproj" Id="9f04ae74-4b48-4428-b549-4a4d117d1e1f" />
+    <Project Path="src/lang/TrueLogs.TrueLang/TrueLogs.TrueLang.csproj" Id="3311ce6d-23e1-4206-b6c3-14b9b835e413" />
+  </Folder>
+  <Folder Name="/src/lang/rewriter/">
+    <Project Path="src/lang/rewriter/TrueLogs.TrueLang.Rewriters.Tests/TrueLogs.TrueLang.Rewriters.Tests.csproj" Id="cd32466e-15d6-4f3d-ad5f-84a0e9ef5350" />
+    <Project Path="src/lang/rewriter/TrueLogs.TrueLang.Rewriters/TrueLogs.TrueLang.Rewriters.csproj" Id="e9572c60-532b-48c5-8470-b306c0c7a535" />
+  </Folder>
+  <Folder Name="/src/lang/translator/">
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.LiteDB.Tests/TrueLogs.TrueLang.Translator.LiteDB.Tests.csproj" Id="2e3d10bc-fb90-496d-9547-cd3434aa05a4" />
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.LiteDB/TrueLogs.TrueLang.Translator.LiteDB.csproj" Id="df7475ec-7fee-403b-b9db-f49ec0b608f1" />
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.TrueLang.Tests/TrueLogs.TrueLang.Translator.TrueLang.Tests.csproj" Id="2be7a579-def6-4010-bb36-3f4e4583a959" />
+    <Project Path="src/lang/translator/TrueLogs.TrueLang.Translator.TrueLang/TrueLogs.TrueLang.Translator.TrueLang.csproj" Id="5aa00d03-876c-4fab-81b5-eacbf9452b06" />
+  </Folder>
+  <Folder Name="/src/storage/">
+    <Project Path="src/storage/TrueLogs.Storage.LiteDB/TrueLogs.Storage.LiteDB.csproj" Id="47ebc0e7-0f04-49a5-b563-fd4be773d2f7" />
+    <Project Path="src/storage/TrueLogs.Storage/TrueLogs.Storage.csproj" Id="74a65048-70a7-4d71-811d-c8dc28b19cd5" />
+  </Folder>
+  <Folder Name="/src/web/">
+    <Project Path="src/web/TrueLogs.Web.Client/TrueLogs.Web.Client.csproj" Id="13357534-7a51-4dc3-812c-d5db911bb505" />
+    <Project Path="src/web/TrueLogs.Web.Host/TrueLogs.Web.Host.csproj" />
+    <Project Path="src/web/TrueLogs.Web.Store/TrueLogs.Web.Store.csproj" Id="1e3f40c2-7f65-4b1e-9c7a-c2f1c7141b17" />
+  </Folder>
+</Solution>

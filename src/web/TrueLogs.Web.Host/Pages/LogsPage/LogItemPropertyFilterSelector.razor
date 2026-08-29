@@ -1,0 +1,55 @@
+﻿@using Fluxor
+@using TrueLogs.Web.Store.LogsFeature.Actions
+
+<MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
+    @foreach (var property in Properties)
+    {
+        <MudMenuItem 
+            Icon="@GetIcon(property.OperationType)"
+            OnClick="(() => HandleAdd(property))" >
+            @GetText(property.OperationType)
+        </MudMenuItem>
+    }
+</MudMenu>
+
+
+@code {
+
+    [Parameter]
+    public string Key { get; set; } = null!;
+
+    [Parameter]
+    public string Value { get; set; } = null!;
+
+    [Parameter]
+    public IEnumerable<Property> Properties { get; set; } = [];
+
+    [Inject]
+    private IDispatcher _dispatcher { get; set; } = null!;
+
+    public void HandleAdd(Property property)
+    {
+        var action = new AddFilterAction(Key, Value, property);
+        _dispatcher.Dispatch(action);
+    }
+
+    public string GetIcon(OperationType operationType)
+        => operationType switch
+        {
+            OperationType.Equal => @Icons.Material.Filled.DragHandle + " " + nameof(OperationType.Equal),
+            OperationType.Greater => @Icons.Material.Filled.ArrowForwardIos + " " + nameof(OperationType.Greater),
+            OperationType.Less => @Icons.Material.Filled.ArrowBackIos + " " + nameof(OperationType.Less),
+            OperationType.Contains => @Icons.Material.Filled.Waves + " " + nameof(OperationType.Contains),
+            _ => throw new ArgumentException(nameof(GetIcon)),
+        };
+
+    public string GetText(OperationType operationType)
+        => operationType switch
+        {
+            OperationType.Equal => nameof(OperationType.Equal),
+            OperationType.Greater => nameof(OperationType.Greater),
+            OperationType.Less => nameof(OperationType.Less),
+            OperationType.Contains => nameof(OperationType.Contains),
+            _ => throw new ArgumentException(nameof(GetText)),
+        };
+}

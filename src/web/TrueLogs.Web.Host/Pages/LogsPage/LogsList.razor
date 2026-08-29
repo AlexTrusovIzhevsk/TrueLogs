@@ -1,0 +1,238 @@
+﻿@page "/"
+@page "/logs"
+@using Fluxor
+@using TrueLogs.Web.Store.Constants
+@using TrueLogs.Web.Store.LogsFeature.Actions
+@using TrueLogs.Web.Store.LogsFeature.States
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<PageTitle>Logs</PageTitle>
+
+<MudStack 
+    Row="true" 
+    Justify="Justify.FlexStart" 
+    AlignItems="AlignItems.Center"
+    Class="pa-1">
+    <MudTextField 
+        @bind-Value="_localQuery" 
+        @onkeyup="HandleKeyDown"
+        Label="Search Value" 
+        Variant="Variant.Outlined"
+        Margin="Margin.Dense" 
+        Class="ma-0 pa-0" />
+
+    <MudIconButton 
+        OnClick="@LoadFirstPage"
+        Icon="@Icons.Material.Filled.Search"
+        Color="Color.Primary"
+        Size="Size.Large"
+        Disabled="@_loading" />
+</MudStack>
+
+
+@if (_error != null)
+{
+    <MudAlert Severity="Severity.Error"
+              Variant="Variant.Filled">
+        @_error
+    </MudAlert>
+}
+
+<div class="tl-logs-grid">
+    <MudDataGrid 
+        T="Log"
+        Items="_logs"
+        Hover
+        Breakpoint="Breakpoint.Sm"
+        Loading="@_loading"
+        LoadingProgressColor="Color.Info"
+        FixedHeader
+        Dense
+        Class=scrollSelector
+        Style="height: calc(100vh - 120px); display: flex; flex-direction: column;">
+        <ColGroup>
+            <col style="width: 1%;" />
+            <col style="width: 10%;" />
+            <col style="width: 10%;" />
+            <col /> 
+        </ColGroup>
+        <Columns>
+            <HierarchyColumn T="Log" Class="tl-logs-grid-hierarch" />
+            <PropertyColumn Property="log => log.Timestamp.ToString(FormatConstants.DateTimeFormat)" />
+            <TemplateColumn T="Log" Title="Level">
+                <CellTemplate>
+                    <MudChip Color="@(GetColor(@context.Item.Level))" Size="Size.Small">@context.Item.Level</MudChip>
+                </CellTemplate>
+            </TemplateColumn>
+            <PropertyColumn Property="log => log.RenderedMessage" />
+        </Columns>
+        <ChildRowRenderer>
+            <LogDescription LogItem="@context.Item"/>
+        </ChildRowRenderer>
+    </MudDataGrid>
+</div>
+
+@code {
+
+    [Inject]
+    private IState<LogsFeatureState> _logsFeatureState { get; set; } = null!;
+
+    [Inject]
+    private IDispatcher _dispatcher { get; set; } = null!;
+
+    [Inject]
+    public ISnackbar _snackbar { get; set; } = null!;
+
+    [Inject]
+    private IScrollListenerFactory _scrollListenerFactory { get; set; } = null!;
+
+    [Inject]
+    NavigationManager _navigationManager { get; set; } = null!;
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Query { get; set; } = null!;
+
+    private IScrollListener? _scrollListener;
+
+    private ElementReference? _containerElement;
+
+    private List<Log> _logs => _logsFeatureState.Value.Logs;
+
+    private int _totalCount => _logsFeatureState.Value.TotalCount;
+
+    private bool _loading => _logsFeatureState.Value.IsLoading;
+
+    private string? _error => _logsFeatureState.Value.Error;
+
+    private string _localQuery { get; set; } = string.Empty;
+
+    private bool _isNavigating = false;
+    private bool _isUpdatingFromState = false;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _logsFeatureState.StateChanged += OnStateChanged;
+    }
+
+    private void OnStateChanged(object? sender, EventArgs e)
+    {
+        if (_isUpdatingFromState) 
+        { 
+            return;
+        }
+
+        var newQuery = _logsFeatureState.Value.Query ?? string.Empty;
+        if (_localQuery != newQuery)
+        {
+            _localQuery = newQuery;
+            _ = LoadFirstPage();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _localQuery = !string.IsNullOrEmpty(Query)
+                ? Query.Replace('_', ' ')
+                : (_logsFeatureState.Value.Query ?? string.Empty);
+
+            if (_isNavigating)
+            {
+                _isNavigating = false;
+                return;
+            }
+
+            _scrollListener = _scrollListenerFactory.Create(".tl-logs-grid .mud-table-container");
+            _scrollListener.OnScroll += OnScrollHandler;
+
+            await LoadFirstPage();
+        }
+    }
+
+    private async void OnScrollHandler(object? sender, ScrollEventArgs e)
+    {
+        try
+        {
+            var scrollData = await _scrollListener!.GetCurrentScrollDataAsync();
+            if (scrollData.ScrollTop + scrollData.ClientHeight >= scrollData.ScrollHeight - 5)
+            {
+                await LoadNextPage();
+            }
+        }
+        catch (Exception exception)
+        {
+            _snackbar.Add(exception.Message);
+        }
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs keyboardEventArgs)
+    {
+        if (keyboardEventArgs.Key == "Enter")
+        {
+            await LoadFirstPage();
+        }
+    }
+
+    private async Task LoadFirstPage()
+    {
+        _isUpdatingFromState = true;
+
+        var query = _localQuery;
+        var action = new LoadLogsAction(0, 0, 50, query);
+        _dispatcher.Dispatch(action);
+
+        _isNavigating = true;
+        var navigationQuery = query.Replace(' ', '_');
+        _navigationManager.NavigateTo($"logs?query={navigationQuery}");
+
+        _isUpdatingFromState = false;
+    }
+
+    private async Task LoadNextPage()
+    {
+        var totalCount = _totalCount;
+        var take = _logsFeatureState.Value.Take;
+        var skip = _logsFeatureState.Value.Skip + take;
+        var query = _logsFeatureState.Value.Query;
+
+        var action = new LoadLogsAction(totalCount, skip, take, query);
+        _dispatcher.Dispatch(action);
+    }
+
+    private async Task<GridData<Log>> LoadLogs(
+        GridStateVirtualize<Log> stateVirtualize, 
+        CancellationToken token)
+    {
+        await LoadNextPage();
+
+        return new GridData<Log> 
+        { 
+            Items = _logs,
+            TotalItems = _totalCount,
+        };
+    }
+
+    private Color GetColor(Level level) 
+        => level switch
+        {
+            Level.Fatal or Level.Error => Color.Error,
+            Level.Warning => Color.Warning,
+            _ => Color.Info,
+        };
+
+    public async ValueTask DisposeAsync()
+    {
+
+        _logsFeatureState.StateChanged -= OnStateChanged;
+
+        if (_scrollListener is not null)
+        {
+            _scrollListener.OnScroll -= OnScrollHandler;
+            await _scrollListener.DisposeAsync();
+        }
+    }
+}

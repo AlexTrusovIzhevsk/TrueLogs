@@ -1,0 +1,52 @@
+﻿@using Fluxor
+@using TrueLogs.Web.Store.Constants
+@using TrueLogs.Web.Store.LogsFeature.Actions
+@using TrueLogs.Web.Store.LogsFeature.States
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<LogItemProperty 
+    Key=@(nameof(LogItem.Timestamp))
+    Value="@LogItem.Timestamp.ToString(FormatConstants.DateTimeFormat)"
+    Properties="
+    [
+        new Property(OperationType.Less, FilterType.Timestamp),
+        new Property(OperationType.Greater, FilterType.Timestamp),
+    ]" />
+<LogItemProperty 
+    Key=@(nameof(LogItem.Level)) 
+    Value="@LogItem.Level.ToString()" 
+    Properties="
+    [
+                         new Property(OperationType.Equal, FilterType.Level),
+    ]" />
+<LogItemProperty 
+    Key=@(nameof(LogItem.RenderedMessage)) 
+    Value="@LogItem.RenderedMessage.ToString()" 
+    Properties="
+    [
+        new Property(OperationType.Equal, FilterType.Message),
+        new Property(OperationType.Contains, FilterType.Message),
+    ]" />
+@if (LogItem.Properties != null)
+{
+    @foreach (var property in LogItem.Properties)
+    {
+        <LogItemProperty 
+            Key=@property.Key 
+            Value="@((property.Value ?? "").ToString())" 
+            Properties="[new Property(OperationType.Equal, FilterType.Properties)]" />
+    }
+}
+
+@code {
+
+    [Inject]
+    private IState<LogsFeatureState> _logsFeatureState { get; set; } = null!;
+
+    [Inject]
+    private IDispatcher _dispatcher { get; set; } = null!;
+
+    [Parameter]
+    public Log LogItem { get; set; } = null!;
+}

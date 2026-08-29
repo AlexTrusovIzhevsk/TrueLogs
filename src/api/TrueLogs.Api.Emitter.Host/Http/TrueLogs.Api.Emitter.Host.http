@@ -1,0 +1,6 @@
+@TrueLogs.Api.Emitter.Host_HostAddress = http://localhost:5265
+
+GET {{TrueLogs.Api.Emitter.Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
