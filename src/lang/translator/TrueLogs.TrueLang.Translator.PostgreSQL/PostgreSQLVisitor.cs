@@ -1,14 +1,13 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
 using TrueLogs.TrueLang.Parsers.Nodes;
 using TrueLogs.TrueLang.Parsers.Nodes.BinaryOperationNodes;
 using TrueLogs.TrueLang.Parsers.Nodes.ComparisonNodes;
 using TrueLogs.TrueLang.Parsers.Nodes.LiteralNodes;
 using TrueLogs.TrueLang.Translators;
 
-namespace TrueLogs.TrueLang.Translator.LiteDB;
+namespace TrueLogs.TrueLang.Translator.PostgreSQL;
 
-internal class LiteDBVisitor : NodeVisitor
+internal class PostgreSQLVisitor : NodeVisitor
 {
     public override string Visit(GroupNode node, TranslationContext context)
     {
@@ -38,7 +37,7 @@ internal class LiteDBVisitor : NodeVisitor
         }
         var valuesText = string.Join(", ", values);
 
-        return $"{node.Field} IN [{valuesText}]";
+        return $"{node.Field} IN ({valuesText})";
     }
 
     public override string Visit(ComparisonNode node, TranslationContext context)
@@ -69,7 +68,7 @@ internal class LiteDBVisitor : NodeVisitor
 
     public override string Visit(NumberLiteralNode node, TranslationContext context)
     {
-       return node.Value.ToString(CultureInfo.InvariantCulture);
+        return node.Value.ToString(CultureInfo.InvariantCulture);
     }
 
     public override string Visit(DateLiteralNode node, TranslationContext context)
@@ -84,7 +83,7 @@ internal class LiteDBVisitor : NodeVisitor
         ComparisonType.GreaterOrEqual => ">=",
         ComparisonType.Less => "<",
         ComparisonType.LessOrEqual => "<=",
-        ComparisonType.Contains => "LIKE",
+        ComparisonType.Contains => "ILIKE",
         _ => throw UnexpectedComparisonException(comparisonType),
     };
 
