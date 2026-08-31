@@ -2,5 +2,5 @@
 
 public interface ILogManager
 {
-    Task Add(IEnumerable<LogModel> logs);
+    Task Add(IEnumerable<LogModel> logs, CancellationToken token);
 }

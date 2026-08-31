@@ -1,10 +1,9 @@
-using TrueLogs.Storage.LiteDB;
 using TrueLogs.Storage.LiteDB.Logs.Managers;
 using TrueLogs.Storage.LiteDB.Logs.Repositories;
 using TrueLogs.Storage.Logs.Managers;
-using TrueLogs.Storage.Logs.Providers;
 using TrueLogs.Api.Emitter.Host.Configurations;
 using TrueLogs.Api.Host.Configurations;
+using TrueLogs.Api.Core;
 
 var builder = WebApplication
     .CreateBuilder(args)
@@ -12,8 +11,9 @@ var builder = WebApplication
     .AddLogging()
     .AddDevelopmentPolicyCors();
 
+// TODO отказатся от абстракции реопзитория
 builder.Services.AddScoped<LiteDbLogRepository, LiteDbLogRepository>();
-builder.Services.AddScoped<LogProvider, LiteDBLogProvider>();
+builder.Services.AddLogProvider();
 builder.Services.AddScoped<ILogManager, LiteDBLogManager>();
 
 builder.Services

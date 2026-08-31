@@ -21,8 +21,10 @@
         <ProjectReference Include="..\..\emitter\adapter\TrueLogs.Emitter.Adapter.File\TrueLogs.Emitter.Adapter.File.csproj" />
         <ProjectReference Include="..\..\emitter\TrueLogs.Emitter.Client\TrueLogs.Emitter.Client.csproj" />
         <ProjectReference Include="..\..\storage\TrueLogs.Storage.LiteDB\TrueLogs.Storage.LiteDB.csproj" />
+        <ProjectReference Include="..\..\storage\TrueLogs.Storage.PostgreSQL\TrueLogs.Storage.PostgreSQL.csproj" />
         <ProjectReference Include="..\..\storage\TrueLogs.Storage\TrueLogs.Storage.csproj" />
         <ProjectReference Include="..\..\aspire\TrueLogs.ServiceDefaults\TrueLogs.ServiceDefaults.csproj" />
+        <ProjectReference Include="..\TrueLogs.Api.Core\TrueLogs.Api.Core.csproj" />
     </ItemGroup>
 
 </Project>

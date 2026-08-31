@@ -21,7 +21,7 @@ public class LiteDbLogRepository
         _logs = _db.GetCollection<LogModel>();
     }
 
-    public async Task InsertAsync(IEnumerable<LogModel> logs)
+    public async Task InsertAsync(IEnumerable<LogModel> logs, CancellationToken token)
     {
         await _logs.UpsertAsync(logs);
     }
