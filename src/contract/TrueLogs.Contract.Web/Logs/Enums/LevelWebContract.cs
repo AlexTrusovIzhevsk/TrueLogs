@@ -1,4 +1,4 @@
-﻿namespace TrueLogs.Contract.Web.Enums;
+﻿namespace TrueLogs.Contract.Web.Logs.Enums;
 
 public enum LevelWebContract
 {

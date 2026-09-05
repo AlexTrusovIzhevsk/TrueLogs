@@ -1,4 +1,4 @@
-﻿namespace TrueLogs.Storage;
+﻿namespace TrueLogs.Storage.Logs;
 
 public class LogModel
 {

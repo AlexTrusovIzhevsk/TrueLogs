@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
-using TrueLogs.Contract.Web;
-using TrueLogs.Contract.Clients;
-using TrueLogs.Contract.Web.Dto;
+using TrueLogs.Contract.Web.Logs;
+using TrueLogs.Contract.Web.Logs.Dto;
 
 namespace TrueLogs.Web.Client;
 
@@ -9,7 +8,7 @@ public class LogProviderClient(HttpClient _httpClient) : ILogProviderClient
 {
     public async Task<LogsWebContract> Get(int skip, int take, string query, CancellationToken token)
     {
-        var endpoint = WebEndpoints.LogProviderGetAllEndpoint;
+        var endpoint = LogProviderWebEndpoints.LogProviderGetAllEndpoint;
         endpoint = Set(endpoint, nameof(skip), skip.ToString());
         endpoint = Set(endpoint, nameof(take), take.ToString());
         endpoint = Set(endpoint, nameof(query), query.ToString());

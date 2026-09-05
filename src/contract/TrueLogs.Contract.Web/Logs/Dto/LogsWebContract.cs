@@ -1,4 +1,4 @@
-﻿namespace TrueLogs.Contract.Web.Dto;
+﻿namespace TrueLogs.Contract.Web.Logs.Dto;
 
 public class LogsWebContract
 {

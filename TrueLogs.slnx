@@ -17,6 +17,7 @@
   </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/api/">
+    <Project Path="src/api/TrueLogs.Api.Core/TrueLogs.Api.Core.csproj" Id="db31b98d-445c-414b-a223-4d5dee0a3b59" />
     <Project Path="src/api/TrueLogs.Api.Emitter.Host/TrueLogs.Api.Emitter.Host.csproj" />
     <Project Path="src/api/TrueLogs.Api.Provider.Host/TrueLogs.Api.Provider.Host.csproj" />
   </Folder>
@@ -52,6 +53,7 @@
   </Folder>
   <Folder Name="/src/storage/">
     <Project Path="src/storage/TrueLogs.Storage.LiteDB/TrueLogs.Storage.LiteDB.csproj" Id="47ebc0e7-0f04-49a5-b563-fd4be773d2f7" />
+    <Project Path="src/storage/TrueLogs.Storage.PostgreSQL/TrueLogs.Storage.PostgreSQL.csproj" Id="fccb5ed5-046e-4a7a-9aa2-2893ba436fed" />
     <Project Path="src/storage/TrueLogs.Storage/TrueLogs.Storage.csproj" Id="74a65048-70a7-4d71-811d-c8dc28b19cd5" />
   </Folder>
   <Folder Name="/src/web/">

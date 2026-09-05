@@ -1,6 +1,6 @@
-﻿using TrueLogs.Contract.Web.Dto;
-using TrueLogs.Contract.Web.Enums;
-using TrueLogs.Storage;
+﻿using TrueLogs.Contract.Web.Logs.Dto;
+using TrueLogs.Contract.Web.Logs.Enums;
+using TrueLogs.Storage.Logs;
 using TrueLogs.Storage.Logs.Providers;
 
 namespace TrueLogs.Api.Provider.Host.Mappers;

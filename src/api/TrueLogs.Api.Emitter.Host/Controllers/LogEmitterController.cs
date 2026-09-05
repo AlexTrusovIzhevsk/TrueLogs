@@ -18,6 +18,6 @@ public class LogEmitterController(
     {
         var models = logs.Map();
 
-        await _manager.Add(models);
+        await _manager.Add(models, token);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LiteDB.Async;
 using TrueLogs.Storage.LiteDB.Logs.Mappers;
+using TrueLogs.Storage.Logs;
 using TrueLogs.Storage.Logs.Providers;
 
 namespace TrueLogs.Storage.LiteDB.Logs.Repositories;
@@ -21,7 +22,7 @@ public class LiteDbLogRepository
         _logs = _db.GetCollection<LogModel>();
     }
 
-    public async Task InsertAsync(IEnumerable<LogModel> logs)
+    public async Task InsertAsync(IEnumerable<LogModel> logs, CancellationToken token)
     {
         await _logs.UpsertAsync(logs);
     }

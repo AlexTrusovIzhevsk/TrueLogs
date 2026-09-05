@@ -1,6 +1,6 @@
-﻿using TrueLogs.Contract.Web.Enums;
+﻿using TrueLogs.Contract.Web.Logs.Enums;
 
-namespace TrueLogs.Contract.Web.Dto;
+namespace TrueLogs.Contract.Web.Logs.Dto;
 
 public class LogWebContract
 {
