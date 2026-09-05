@@ -1,6 +1,5 @@
-﻿using TrueLogs.Contract.Web.Dto;
-
-namespace TrueLogs.Contract.Clients;
+﻿using TrueLogs.Contract.Web.Logs.Dto;
+namespace TrueLogs.Contract.Web.Logs;
 
 public interface ILogProviderClient
 {

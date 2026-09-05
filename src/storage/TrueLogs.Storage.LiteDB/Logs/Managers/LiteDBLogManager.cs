@@ -1,4 +1,5 @@
 ﻿using TrueLogs.Storage.LiteDB.Logs.Repositories;
+using TrueLogs.Storage.Logs;
 using TrueLogs.Storage.Logs.Managers;
 
 namespace TrueLogs.Storage.LiteDB.Logs.Managers;

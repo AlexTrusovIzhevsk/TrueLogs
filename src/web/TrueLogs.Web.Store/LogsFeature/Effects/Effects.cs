@@ -1,6 +1,6 @@
 ﻿using Fluxor;
 using TrueLogs.Api.Mappers;
-using TrueLogs.Contract.Clients;
+using TrueLogs.Contract.Web.Logs;
 using TrueLogs.Web.Store.Exceptions;
 using TrueLogs.Web.Store.LogsFeature.Actions;
 using TrueLogs.Web.Store.LogsFeature.States;

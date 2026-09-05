@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Logging;
 using Npgsql;
+using TrueLogs.Storage.Logs;
 using TrueLogs.Storage.Logs.Providers;
 using TrueLogs.TrueLang.Parsers.Nodes;
 using TrueLogs.TrueLang.Translator.PostgreSQL;

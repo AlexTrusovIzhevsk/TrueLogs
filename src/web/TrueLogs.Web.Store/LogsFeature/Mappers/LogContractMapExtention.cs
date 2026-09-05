@@ -1,5 +1,5 @@
-﻿using TrueLogs.Contract.Web.Dto;
-using TrueLogs.Contract.Web.Enums;
+﻿using TrueLogs.Contract.Web.Logs.Dto;
+using TrueLogs.Contract.Web.Logs.Enums;
 using TrueLogs.Web.Store.LogsFeature.States;
 
 namespace TrueLogs.Api.Mappers;

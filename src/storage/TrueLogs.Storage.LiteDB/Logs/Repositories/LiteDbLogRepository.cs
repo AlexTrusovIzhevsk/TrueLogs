@@ -1,5 +1,6 @@
 ﻿using LiteDB.Async;
 using TrueLogs.Storage.LiteDB.Logs.Mappers;
+using TrueLogs.Storage.Logs;
 using TrueLogs.Storage.Logs.Providers;
 
 namespace TrueLogs.Storage.LiteDB.Logs.Repositories;

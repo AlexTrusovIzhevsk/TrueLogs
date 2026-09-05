@@ -1,6 +1,6 @@
 ﻿using TrueLogs.Contract.Emitter.Dto;
 using TrueLogs.Contract.Emitter.Enums;
-using TrueLogs.Storage;
+using TrueLogs.Storage.Logs;
 
 namespace TrueLogs.Api.Emitter.Host.Mappers;
 

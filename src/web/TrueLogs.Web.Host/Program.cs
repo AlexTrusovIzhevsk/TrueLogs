@@ -3,7 +3,7 @@ using Fluxor.Blazor.Web.ReduxDevTools;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
-using TrueLogs.Contract.Clients;
+using TrueLogs.Contract.Web.Logs;
 using TrueLogs.Web.Client;
 using TrueLogs.Web.Host;
 using TrueLogs.Web.Store;

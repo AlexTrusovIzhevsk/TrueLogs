@@ -1,6 +1,6 @@
-﻿namespace TrueLogs.Contract.Web;
+﻿namespace TrueLogs.Contract.Web.Logs;
 
-public static class WebEndpoints
+public static class LogProviderWebEndpoints
 {
     public const string LogProviderRoute = "api/log-provider";
 
